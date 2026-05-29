@@ -1,5 +1,16 @@
 # 03 — Individual Reflection
 
+## Vai trò chính
+
+Tôi là **leader / người tổng hợp Task 2**. Vai trò của tôi là đưa candidate VinFast route planning vào thảo luận, điều phối nhóm gom 12 candidates về shortlist, giữ cho nhóm bám rubric và tổng hợp bản Problem Statement cuối.
+
+Trong nhóm, tôi phụ trách chính phần:
+
+- Điều phối convergence từ 12 candidates của Quang, Dương, Lương, Đức.
+- Pitch candidate chủ xe VinFast lập lịch trình đi đường dài.
+- Tổng hợp workflow before/after, Problem Statement v0/v1 và decision cuối.
+- Kiểm tra bài không bị solution-first hoặc nhảy lên Agent quá sớm.
+
 ## Tôi đã tham gia vào phần nào?
 
 | Hoạt động | Tôi đã làm gì? | Kết quả / ảnh hưởng |

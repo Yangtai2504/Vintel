@@ -2,7 +2,9 @@
 
 ## Candidate nhóm chọn
 
-Nhóm chọn đào sâu candidate:
+Nhóm có 4 thành viên: Quang, Dương, Lương và Đức. Mỗi người đưa ra 3 candidate problems, tổng cộng 12 candidates. Nhóm không chọn Problem Statement ngay, mà đi qua quy trình hội tụ: trình bày candidate → gom cluster → shortlist → score → chọn 1 candidate để đào sâu.
+
+Candidate cuối cùng nhóm chọn:
 
 ```text
 Chủ xe VinFast khi đi đường dài phải tự kiểm tra nhiều nguồn để lập lịch trình: % pin còn lại, quãng đường, trạm sạc nên dừng, thời gian sạc và thời điểm tiếp tục di chuyển.
@@ -16,51 +18,96 @@ Lý do chọn candidate này:
 - Metric đo được: thời gian lập kế hoạch, số nguồn/app phải kiểm tra, số lần đổi kế hoạch, mức độ tự tin trước chuyến đi.
 - Có thể so sánh No AI / Rule / Workflow / Agent.
 - Gắn trực tiếp với hệ sinh thái Vingroup qua VinFast và hạ tầng trạm sạc.
+- Rủi ro thấp hơn các bài chạm dữ liệu y tế, giao dịch cá nhân hoặc hệ thống nội bộ doanh nghiệp.
 
 ---
 
-## Group convergence
+## 3.1 — Trình bày 12 candidates
 
-Giả định nhóm có 9-12 candidates từ các thành viên. Các candidates được gom thành 4 cluster:
+| # | Người đưa ra | Candidate problem | Người gặp vấn đề | Điểm nghẽn | Cảm nhận nhanh |
+|---|---|---|---|---|---|
+| 1 | Quang | Chủ xe VinFast phải tự kiểm tra nhiều nguồn khi lên lịch trình đi đường dài: % pin, trạm sạc, thời gian sạc, lịch trình cụ thể | Chủ xe VinFast đi đường dài/đi tỉnh | Tự ghép pin, route, trạm sạc, thời gian dừng | Rất phù hợp để đào sâu |
+| 2 | Quang | Nhân viên CSKH phải đọc nhiều lịch sử tương tác để hiểu context khách hàng đa dịch vụ | CSKH/Vận hành trong hệ sinh thái Vin | Dữ liệu khách rải rác nhiều hệ thống | AI-fit tốt nhưng cần data access |
+| 3 | Quang | Phụ huynh Vinschool khó theo dõi nhiều thông báo và việc cần hành động | Phụ huynh Vinschool | Tự lọc thông báo, deadline, việc cần xác nhận | Có pain nhưng privacy trẻ em cao |
+| 4 | Dương | Kết quả xét nghiệm Vinmec khó hiểu | Bệnh nhân/khách hàng Vinmec | Ngôn ngữ y tế khó hiểu, người dùng không biết chỉ số nào cần hỏi bác sĩ | Workflow rõ, nhưng boundary y tế rất nhạy |
+| 5 | Dương | Lên kế hoạch đi Vinpearl | Khách du lịch/gia đình đặt chuyến đi Vinpearl | Tự ghép phòng, vé, lịch di chuyển, dịch vụ, ngân sách | Workflow rõ, phụ thuộc dữ liệu realtime |
+| 6 | Dương | Điểm VinID rải rác, khó biết điểm nào sắp hết hạn hoặc dùng ở đâu | Khách hàng dùng nhiều dịch vụ Vin | Dữ liệu điểm/thưởng rải rác, cần theo dõi hạn dùng | Có metric tốt nhưng privacy/permission phức tạp |
+| 7 | Lương | VinFast Service Center phải tổng hợp báo cáo hiệu suất sửa chữa từ CRM, SAP và hệ thống kỹ thuật | Quản lý vận hành Service Center | Tổng hợp số liệu từ 3 nguồn, hỏi lại nhiều lần | Workflow rõ, metric thời gian tốt |
+| 8 | Lương | CSKH VinID mất thời gian kiểm tra lịch sử điểm thưởng và điều kiện khuyến mại | Nhân viên CSKH VinID, khách hàng chờ hỗ trợ | Tra cứu lịch sử điểm và rule khuyến mại thủ công | Tốt cho Workflow, cần dữ liệu cá nhân |
+| 9 | Lương | Quản lý VinPearl cần tổng hợp yêu cầu phòng/dịch vụ từ PMS, email, chat để lập kế hoạch cuối tuần | Quản lý resort VinPearl | Đọc nhiều nguồn rời rạc để lập kế hoạch vận hành | Workflow rõ, data nội bộ |
+| 10 | Đức | Chuẩn hóa meeting notes sau họp cross-team | Người tham gia họp | Viết notes, action items, gửi lại sau họp | Phổ biến nhưng ít đặc thù Vingroup |
+| 11 | Đức | Chuyển dữ liệu Google Sheets vào slide báo cáo định kỳ | PM, analyst | Dễ sai số, mất thời gian format và kiểm tra | Workflow rõ, có thể rule/automation |
+| 12 | Đức | Hỏi lại quy trình onboarding nội bộ cho task mới | Người mới, intern | Hỏi lại cùng quy trình, trì hoãn khi làm task | Có pain thật, nhưng scope nội bộ chung |
+
+---
+
+## 3.2 — Gom trùng / cluster
 
 | Cluster | Candidates included | Pattern chung | Ghi chú |
 |---|---|---|---|
-| A. VinFast / mobility | Lập lịch trình sạc khi đi đường dài, tìm trạm sạc phù hợp, kết hợp Xanh SM/VinBus khi cần di chuyển tiếp | Người dùng phải ghép tuyến đường, pin, trạm sạc và thời gian | Cluster rõ workflow nhất |
-| B. Hỗ trợ khách hàng đa dịch vụ | Cư dân Vinhomes gửi yêu cầu sai kênh, CSKH đọc context khách đa dịch vụ | Ma sát ở handoff giữa nhiều đơn vị | Tốt nhưng phụ thuộc dữ liệu vận hành nội bộ |
-| C. Education / parent workflow | Phụ huynh Vinschool lọc thông báo, theo dõi deadline | Nhiều thông báo cần hành động | Có rủi ro privacy/trẻ em |
-| D. Travel / healthcare planning | Khách Vinpearl/Vinmec chuẩn bị lịch, giấy tờ, quyền lợi | Cần checklist cá nhân hóa | Dễ chạm tư vấn nhạy cảm |
+| A. VinFast / mobility / vận hành xe | #1 Chủ xe VinFast lập lịch trình sạc; #7 VinFast Service Center weekly report | Đều liên quan VinFast nhưng một bài là customer journey, một bài là vận hành nội bộ | #1 có workflow người dùng dễ quan sát hơn; #7 có metric tốt nhưng cần CRM/SAP |
+| B. Y tế / giáo dục / dữ liệu nhạy cảm | #3 Phụ huynh Vinschool; #4 Kết quả xét nghiệm Vinmec | AI có thể giải thích/tóm tắt nhưng boundary rất quan trọng | Rủi ro privacy và trách nhiệm chuyên môn cao |
+| C. Loyalty / CSKH / dữ liệu cá nhân | #2 CSKH khách đa dịch vụ; #6 Điểm VinID; #8 CSKH VinID | Cần truy cập lịch sử khách hàng, giao dịch, ưu đãi | AI-fit tốt nhưng permission và privacy phức tạp |
+| D. Du lịch / resort / planning | #5 Lên kế hoạch Vinpearl; #9 Quản lý VinPearl tổng hợp yêu cầu cuối tuần | Ghép nhiều nguồn để lập kế hoạch | #5 là customer-facing, #9 là operations |
+| E. Productivity nội bộ | #10 Meeting notes; #11 Sheets to slides; #12 Onboarding process | Workflow rõ, dễ làm automation | Ít đặc thù Vingroup hơn, có nhiều solution phổ biến |
 
-## Shortlist
+---
+
+## 3.3 — Shortlist
+
+Sau khi thảo luận, nhóm shortlist 4 candidates mạnh nhất:
 
 | Candidate | Vì sao vào shortlist | Rủi ro / điều chưa rõ |
 |---|---|---|
-| Chủ xe VinFast lập lịch trình đi đường dài | Actor rõ, workflow rõ, metric dễ đo, gắn với VinFast | Cần dữ liệu realtime về trạm sạc, giao thông, mức tiêu hao |
-| Cư dân Vinhomes gửi yêu cầu đa dịch vụ | Thể hiện rõ hệ sinh thái, có bottleneck routing | Cần log ticket hoặc data nội bộ |
-| CSKH tóm tắt context khách hàng đa dịch vụ | AI fit mạnh, impact vận hành rõ | Phụ thuộc quyền truy cập dữ liệu nhiều hệ thống |
+| #1 Chủ xe VinFast lập lịch trình đi đường dài | Actor rõ, workflow rõ, metric dễ đo, gắn VinFast, có thể mô phỏng bằng tuyến đường | Cần dữ liệu realtime về trạm sạc, giao thông, mức tiêu hao |
+| #4 Kết quả xét nghiệm Vinmec khó hiểu | Workflow rõ, pain thật, AI intervention point rõ: giải thích thuật ngữ y tế | Ranh giới giải thích và chẩn đoán rất nhạy; cần bác sĩ/human review |
+| #7 VinFast Service Center tổng hợp báo cáo hiệu suất sửa chữa | Metric tốt: 90 phút/tuần, nguồn dữ liệu rõ, workflow báo cáo quen thuộc | Cần CRM/SAP/hệ thống kỹ thuật nội bộ, khó validate ngoài lớp |
+| #5 Lên kế hoạch đi Vinpearl | Workflow lặp lại, pain du lịch thật, metric thời gian rõ | Giá/phòng/vé thay đổi realtime, cần API sống |
 
-## Score để đồng thuận
+Vì sao không shortlist các candidate còn lại:
 
-| Candidate | Actor rõ | Workflow rõ | Pain có evidence | Impact đo được | Làm trong lab | So sánh R/W/A được | Nhóm hiểu domain | Tổng |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Chủ xe VinFast lập lịch trình đi đường dài | 5 | 5 | 4 | 5 | 5 | 5 | 4 | 33 |
-| Cư dân Vinhomes gửi yêu cầu đa dịch vụ | 5 | 5 | 3 | 5 | 5 | 5 | 4 | 32 |
-| CSKH tóm tắt context khách hàng đa dịch vụ | 4 | 5 | 3 | 5 | 4 | 5 | 3 | 29 |
+- #2, #6, #8 đều cần dữ liệu khách hàng/điểm thưởng/giao dịch cá nhân, privacy và permission phức tạp.
+- #3 liên quan dữ liệu trẻ em/phụ huynh nên boundary nhạy.
+- #9 cần dữ liệu PMS/email/chat nội bộ resort.
+- #10, #11, #12 có workflow rõ nhưng ít đặc thù Vingroup và nhiều solution phổ biến đã có.
+
+---
+
+## 3.4 — Score để đồng thuận
+
+Chấm 1-5. Điểm không nhằm tuyệt đối, mà để ép nhóm nói rõ lý do.
+
+| Candidate | Actor rõ | Workflow rõ | Pain có evidence | Impact đo được | Làm trong lab | So sánh R/W/A được | Nhóm hiểu domain | Rủi ro boundary thấp | Tổng |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| #1 Chủ xe VinFast lập lịch trình đi đường dài | 5 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 37 |
+| #4 Kết quả xét nghiệm Vinmec khó hiểu | 5 | 5 | 4 | 5 | 4 | 5 | 3 | 2 | 33 |
+| #7 VinFast Service Center báo cáo hiệu suất | 5 | 5 | 4 | 5 | 3 | 5 | 3 | 4 | 34 |
+| #5 Lên kế hoạch đi Vinpearl | 5 | 5 | 4 | 4 | 4 | 4 | 4 | 3 | 33 |
 
 Candidate nhóm chọn:
 
 ```text
-Chủ xe VinFast lập lịch trình đi đường dài có tính đến pin và trạm sạc.
+#1 Chủ xe VinFast lập lịch trình đi đường dài có tính đến pin và trạm sạc.
+```
+
+Vì sao chọn:
+
+```text
+Candidate #1 có điểm cân bằng nhất: actor rõ, workflow vẽ được, metric đo được, có thể validate bằng phỏng vấn/mô phỏng chuyến đi, và vẫn gắn với hệ sinh thái Vingroup. Rủi ro boundary có nhưng kiểm soát được vì AI chỉ đề xuất lịch trình, tài xế quyết định cuối cùng.
 ```
 
 Vì sao không chọn các candidate còn lại:
 
-- Cư dân Vinhomes gửi yêu cầu đa dịch vụ: tốt nhưng cần dữ liệu ticket/CSKH nội bộ để chứng minh baseline.
-- CSKH tóm tắt context khách hàng đa dịch vụ: AI fit mạnh nhưng phụ thuộc data access và quyền riêng tư.
+```text
+- #4 Vinmec rất mạnh về pain nhưng rủi ro y tế cao. AI chỉ giải thích, không chẩn đoán, nên cần thiết kế boundary và kiểm duyệt chuyên môn chặt hơn thời lượng lab.
+- #7 VinFast Service Center có metric tốt nhưng cần hệ thống nội bộ như CRM/SAP, nhóm khó validate.
+- #5 Vinpearl có workflow rõ nhưng phụ thuộc dữ liệu realtime về phòng, giá, vé, lịch dịch vụ.
+```
 
 Nếu có disagreement, nhóm xử lý thế nào:
 
 ```text
-Nhóm không vote ngay mà so theo 7 tiêu chí: actor, workflow, evidence, impact, scope lab, khả năng so sánh Rule/Workflow/Agent và mức hiểu domain. Candidate VinFast thắng vì workflow người dùng rõ hơn, metric dễ đo hơn và có thể validate bằng phỏng vấn chủ xe hoặc mô phỏng một chuyến đi.
+Nhóm dùng scorecard thay vì vote cảm tính. Các thành viên đồng ý rằng #4 và #7 đều mạnh, nhưng #1 phù hợp hơn với lab vì dễ mô phỏng workflow, dễ đo baseline, ít phụ thuộc dữ liệu nội bộ và có boundary an toàn hơn.
 ```
 
 ---
