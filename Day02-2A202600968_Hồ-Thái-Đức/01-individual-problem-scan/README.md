@@ -1,7 +1,7 @@
 # 01 - Individual Problem Scan
 
 ## Người làm
-- Tên: HoThaiDuc
+- Tên: Hồ Thái Đức
 - Mã sinh viên: 2A202600968
 - Mục tiêu: Làm đầy đủ phần scan cá nhân với 10 problem và chọn top 3 Problem Cards.
 

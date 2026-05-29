@@ -1,4 +1,4 @@
-# Day02-2A202600968-HoThaiDuc
+# Day02-2A202600968_Hồ-Thái-Đức
 
 Đây là bài nộp cá nhân cho Day 02 Lab — Tìm Đúng Bài Toán Cho AI.
 
